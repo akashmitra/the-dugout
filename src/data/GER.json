@@ -1,0 +1,32 @@
+{
+  "code": "GER",
+  "team": "Germany",
+  "coach": "Julian Nagelsmann",
+  "primaryColor": "#FFFFFF",
+  "secondaryColor": "#000000",
+  "players": [
+    { "id": 1,  "name": "Neuer",      "number": 1,  "position": "GK",  "image": "GER_1.png"  },
+    { "id": 2,  "name": "Kimmich",    "number": 6,  "position": "CM",  "image": "GER_6.png"  },
+    { "id": 3,  "name": "Rüdiger",    "number": 2,  "position": "CB",  "image": "GER_2.png"  },
+    { "id": 4,  "name": "Süle",       "number": 5,  "position": "CB",  "image": "GER_5.png"  },
+    { "id": 5,  "name": "Raum",       "number": 3,  "position": "LB",  "image": "GER_3.png"  },
+    { "id": 6,  "name": "Goretzka",   "number": 8,  "position": "CM",  "image": "GER_8.png"  },
+    { "id": 7,  "name": "Müller",     "number": 13, "position": "CAM", "image": "GER_13.png" },
+    { "id": 8,  "name": "Gnabry",     "number": 10, "position": "RW",  "image": "GER_10.png" },
+    { "id": 9,  "name": "Havertz",    "number": 7,  "position": "ST",  "image": "GER_7.png"  },
+    { "id": 10, "name": "Musiala",    "number": 14, "position": "CAM", "image": "GER_14.png" },
+    { "id": 11, "name": "Wirtz",      "number": 17, "position": "LW",  "image": "GER_17.png" },
+    { "id": 12, "name": "T. Fleckен", "number": 12, "position": "GK",  "image": "GER_12.png" },
+    { "id": 13, "name": "Sane",       "number": 19, "position": "LW",  "image": "GER_19.png" },
+    { "id": 14, "name": "Schlotterbeck","number": 4,"position": "CB",  "image": "GER_4.png"  },
+    { "id": 15, "name": "Hofmann",    "number": 16, "position": "RB",  "image": "GER_16.png" },
+    { "id": 16, "name": "Fullkrug",   "number": 9,  "position": "ST",  "image": "GER_9.png"  },
+    { "id": 17, "name": "Gundogan",   "number": 21, "position": "CM",  "image": "GER_21.png" },
+    { "id": 18, "name": "Brandt",     "number": 11, "position": "CAM", "image": "GER_11.png" },
+    { "id": 19, "name": "Can",        "number": 23, "position": "CDM", "image": "GER_23.png" },
+    { "id": 20, "name": "Klostermann","number": 15, "position": "RB",  "image": "GER_15.png" },
+    { "id": 21, "name": "Mittelstädt","number": 18, "position": "LB",  "image": "GER_18.png" },
+    { "id": 22, "name": "Baumann",    "number": 22, "position": "GK",  "image": "GER_22.png" },
+    { "id": 23, "name": "Tah",        "number": 20, "position": "CB",  "image": "GER_20.png" }
+  ]
+}

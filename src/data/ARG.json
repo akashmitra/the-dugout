@@ -1,0 +1,32 @@
+{
+  "code": "ARG",
+  "team": "Argentina",
+  "coach": "Lionel Scaloni",
+  "primaryColor": "#74ACDF",
+  "secondaryColor": "#FFFFFF",
+  "players": [
+    { "id": 1,  "name": "E. Martínez","number": 1,  "position": "GK",  "image": "ARG_1.png"  },
+    { "id": 2,  "name": "Montiel",    "number": 2,  "position": "RB",  "image": "ARG_2.png"  },
+    { "id": 3,  "name": "Tagliafico", "number": 3,  "position": "LB",  "image": "ARG_3.png"  },
+    { "id": 4,  "name": "Romero",     "number": 4,  "position": "CB",  "image": "ARG_4.png"  },
+    { "id": 5,  "name": "Paredes",    "number": 5,  "position": "CDM", "image": "ARG_5.png"  },
+    { "id": 6,  "name": "Lisandro M.","number": 6,  "position": "CB",  "image": "ARG_6.png"  },
+    { "id": 7,  "name": "Di María",   "number": 7,  "position": "RW",  "image": "ARG_7.png"  },
+    { "id": 8,  "name": "Acuña",      "number": 8,  "position": "LB",  "image": "ARG_8.png"  },
+    { "id": 9,  "name": "J. Álvarez", "number": 9,  "position": "ST",  "image": "ARG_9.png"  },
+    { "id": 10, "name": "Messi",      "number": 10, "position": "CAM", "image": "ARG_10.png" },
+    { "id": 11, "name": "Mac Allister","number": 11,"position": "CM",  "image": "ARG_11.png" },
+    { "id": 12, "name": "G. Rulli",   "number": 12, "position": "GK",  "image": "ARG_12.png" },
+    { "id": 13, "name": "Meza",       "number": 13, "position": "CM",  "image": "ARG_13.png" },
+    { "id": 14, "name": "Molina",     "number": 14, "position": "RB",  "image": "ARG_14.png" },
+    { "id": 15, "name": "De Paul",    "number": 15, "position": "CM",  "image": "ARG_15.png" },
+    { "id": 16, "name": "Lautaro M.", "number": 16, "position": "ST",  "image": "ARG_16.png" },
+    { "id": 17, "name": "Palacios",   "number": 17, "position": "CM",  "image": "ARG_17.png" },
+    { "id": 18, "name": "Correa",     "number": 18, "position": "ST",  "image": "ARG_18.png" },
+    { "id": 19, "name": "Dybala",     "number": 19, "position": "CAM", "image": "ARG_19.png" },
+    { "id": 20, "name": "Lo Celso",   "number": 20, "position": "CM",  "image": "ARG_20.png" },
+    { "id": 21, "name": "Paulo D.",   "number": 21, "position": "CB",  "image": "ARG_21.png" },
+    { "id": 22, "name": "Foyth",      "number": 22, "position": "RB",  "image": "ARG_22.png" },
+    { "id": 23, "name": "Armani",     "number": 23, "position": "GK",  "image": "ARG_23.png" }
+  ]
+}
