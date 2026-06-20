@@ -7,41 +7,37 @@ interface BallProps {
   onMove: (x: number, y: number) => void
 }
 
+const SIZE = 28
+
 export function Ball({ x, y, pitchRef, onMove }: BallProps) {
   const { onPointerDown, onPointerMove, onPointerUp } = useDrag({ onMove, containerRef: pitchRef })
 
   return (
     <div
-      className="absolute select-none cursor-grab active:cursor-grabbing"
       style={{
+        position: 'absolute',
         left: `${x}%`,
         top: `${y}%`,
         transform: 'translate(-50%, -50%)',
+        width: SIZE,
+        height: SIZE,
         zIndex: 20,
         touchAction: 'none',
-        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.7))',
+        cursor: 'grab',
+        userSelect: 'none',
+        filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.8))',
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
     >
       <img
-        src="/images/ball.png"
+        src="/images/ball.svg"
         alt="ball"
-        width={22}
-        height={22}
+        width={SIZE}
+        height={SIZE}
         draggable={false}
-        onError={e => {
-          // Fallback SVG ball
-          const img = e.currentTarget
-          const parent = img.parentElement
-          if (!parent) return
-          img.remove()
-          parent.innerHTML = `<svg viewBox="0 0 22 22" width="22" height="22">
-            <circle cx="11" cy="11" r="11" fill="white" stroke="#333" stroke-width="1"/>
-            <path d="M11 2 L14 8 L20 8 L15 12 L17 18 L11 14 L5 18 L7 12 L2 8 L8 8 Z" fill="#222"/>
-          </svg>`
-        }}
+        style={{ display: 'block', width: SIZE, height: SIZE }}
       />
     </div>
   )
