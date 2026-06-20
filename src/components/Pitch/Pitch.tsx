@@ -1,65 +1,79 @@
 export function Pitch() {
-  const stroke = 'rgba(255,255,255,0.7)'
-  const sw = 0.3
+  const line = 'rgba(255,255,255,0.82)'
+  const sw = 0.35
 
   return (
     <svg
       viewBox="0 0 160 90"
       preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full"
-      style={{ pointerEvents: 'none' }}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
     >
       <defs>
-        <pattern id="stripes" patternUnits="userSpaceOnUse" width="10" height="90">
-          <rect width="5" height="90" fill="#2d6a2d" />
-          <rect x="5" width="5" height="90" fill="#2a5f2a" />
+        {/* Alternating grass stripes */}
+        <pattern id="grass" patternUnits="userSpaceOnUse" width="12" height="90">
+          <rect width="6"  height="90" fill="#2d7a2d" />
+          <rect x="6" width="6" height="90" fill="#297029" />
         </pattern>
+        {/* Vignette overlay */}
+        <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+          <stop offset="60%" stopColor="transparent" />
+          <stop offset="100%" stopColor="rgba(0,0,0,0.35)" />
+        </radialGradient>
       </defs>
 
-      {/* Background */}
-      <rect width="160" height="90" fill="url(#stripes)" />
+      {/* Grass base */}
+      <rect width="160" height="90" fill="url(#grass)" />
+
+      {/* Vignette */}
+      <rect width="160" height="90" fill="url(#vignette)" />
+
+      {/* ── Pitch lines ── */}
 
       {/* Outer boundary */}
-      <rect x="3" y="3" width="154" height="84" fill="none" stroke={stroke} strokeWidth={sw} />
+      <rect x="4" y="3" width="152" height="84" fill="none" stroke={line} strokeWidth={sw} />
 
       {/* Halfway line */}
-      <line x1="80" y1="3" x2="80" y2="87" stroke={stroke} strokeWidth={sw} />
+      <line x1="80" y1="3" x2="80" y2="87" stroke={line} strokeWidth={sw} />
 
       {/* Centre circle */}
-      <circle cx="80" cy="45" r="10" fill="none" stroke={stroke} strokeWidth={sw} />
-      <circle cx="80" cy="45" r="0.7" fill={stroke} />
+      <circle cx="80" cy="45" r="11" fill="none" stroke={line} strokeWidth={sw} />
+      <circle cx="80" cy="45" r="0.8" fill={line} />
 
-      {/* Penalty areas */}
-      {/* Left */}
-      <rect x="3" y="22" width="20" height="46" fill="none" stroke={stroke} strokeWidth={sw} />
-      {/* Right */}
-      <rect x="137" y="22" width="20" height="46" fill="none" stroke={stroke} strokeWidth={sw} />
+      {/* Centre spot arc caps (small tick marks at pitch edge) */}
+      <line x1="80" y1="3" x2="80" y2="5" stroke={line} strokeWidth={sw * 2} />
+      <line x1="80" y1="85" x2="80" y2="87" stroke={line} strokeWidth={sw * 2} />
 
-      {/* Goal areas (6-yard boxes) */}
-      {/* Left */}
-      <rect x="3" y="33" width="8" height="24" fill="none" stroke={stroke} strokeWidth={sw} />
-      {/* Right */}
-      <rect x="149" y="33" width="8" height="24" fill="none" stroke={stroke} strokeWidth={sw} />
-
-      {/* Goals */}
-      {/* Left */}
-      <rect x="0" y="38" width="3" height="14" fill="none" stroke={stroke} strokeWidth={sw} />
-      {/* Right */}
-      <rect x="157" y="38" width="3" height="14" fill="none" stroke={stroke} strokeWidth={sw} />
-
-      {/* Penalty spots */}
-      <circle cx="15" cy="45" r="0.7" fill={stroke} />
-      <circle cx="145" cy="45" r="0.7" fill={stroke} />
-
-      {/* Penalty arcs */}
-      <path d="M 23 36 A 10 10 0 0 0 23 54" fill="none" stroke={stroke} strokeWidth={sw} />
-      <path d="M 137 36 A 10 10 0 0 1 137 54" fill="none" stroke={stroke} strokeWidth={sw} />
-
+      {/* ── Left (Team A) ── */}
+      {/* Penalty area */}
+      <rect x="4" y="20" width="22" height="50" fill="none" stroke={line} strokeWidth={sw} />
+      {/* Goal area */}
+      <rect x="4" y="31" width="9" height="28" fill="none" stroke={line} strokeWidth={sw} />
+      {/* Goal */}
+      <rect x="0.5" y="37" width="3.5" height="16"
+        fill="rgba(255,255,255,0.08)" stroke={line} strokeWidth={sw} />
+      {/* Penalty spot */}
+      <circle cx="16" cy="45" r="0.8" fill={line} />
+      {/* Penalty arc */}
+      <path d="M 26 34 A 11 11 0 0 0 26 56" fill="none" stroke={line} strokeWidth={sw} />
       {/* Corner arcs */}
-      <path d="M 3 6 A 3 3 0 0 1 6 3" fill="none" stroke={stroke} strokeWidth={sw} />
-      <path d="M 154 3 A 3 3 0 0 1 157 6" fill="none" stroke={stroke} strokeWidth={sw} />
-      <path d="M 157 84 A 3 3 0 0 1 154 87" fill="none" stroke={stroke} strokeWidth={sw} />
-      <path d="M 6 87 A 3 3 0 0 1 3 84" fill="none" stroke={stroke} strokeWidth={sw} />
+      <path d="M 4 6.5 A 3.5 3.5 0 0 1 7.5 3" fill="none" stroke={line} strokeWidth={sw} />
+      <path d="M 4 83.5 A 3.5 3.5 0 0 0 7.5 87" fill="none" stroke={line} strokeWidth={sw} />
+
+      {/* ── Right (Team B) ── */}
+      {/* Penalty area */}
+      <rect x="134" y="20" width="22" height="50" fill="none" stroke={line} strokeWidth={sw} />
+      {/* Goal area */}
+      <rect x="147" y="31" width="9" height="28" fill="none" stroke={line} strokeWidth={sw} />
+      {/* Goal */}
+      <rect x="156" y="37" width="3.5" height="16"
+        fill="rgba(255,255,255,0.08)" stroke={line} strokeWidth={sw} />
+      {/* Penalty spot */}
+      <circle cx="144" cy="45" r="0.8" fill={line} />
+      {/* Penalty arc */}
+      <path d="M 134 34 A 11 11 0 0 1 134 56" fill="none" stroke={line} strokeWidth={sw} />
+      {/* Corner arcs */}
+      <path d="M 156 6.5 A 3.5 3.5 0 0 0 152.5 3" fill="none" stroke={line} strokeWidth={sw} />
+      <path d="M 156 83.5 A 3.5 3.5 0 0 1 152.5 87" fill="none" stroke={line} strokeWidth={sw} />
     </svg>
   )
 }

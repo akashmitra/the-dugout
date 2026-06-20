@@ -4,55 +4,114 @@ export function SlidePanel() {
   const { slides, activeSlideIndex, setActiveSlide, duplicateSlide } = useBoardStore()
 
   return (
-    <div className="flex items-center gap-2 px-4 py-2 overflow-x-auto" style={{ background: 'rgba(0,0,0,0.4)' }}>
-      {slides.map((slide, i) => (
-        <button
-          key={slide.id}
-          onClick={() => setActiveSlide(i)}
-          className="flex-shrink-0 flex flex-col items-center gap-1 group"
-        >
-          {/* Thumbnail */}
-          <div
-            className="rounded overflow-hidden transition-all"
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      padding: '10px 20px',
+      overflowX: 'auto',
+      background: 'rgba(0,0,0,0.35)',
+      borderTop: '1px solid rgba(255,255,255,0.06)',
+      flexShrink: 0,
+      scrollbarWidth: 'thin',
+    }}>
+      {slides.map((slide, i) => {
+        const isActive = i === activeSlideIndex
+        return (
+          <button
+            key={slide.id}
+            onClick={() => setActiveSlide(i)}
             style={{
-              width: 80,
-              height: 45,
-              background: '#2d6a2d',
-              border: i === activeSlideIndex
-                ? '2px solid #6366f1'
-                : '2px solid rgba(255,255,255,0.15)',
-              boxShadow: i === activeSlideIndex ? '0 0 0 1px #6366f1' : 'none',
+              flexShrink: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 5,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
             }}
           >
-            {/* Mini pitch lines */}
-            <svg viewBox="0 0 80 45" width="80" height="45" style={{ opacity: 0.6 }}>
-              <rect width="80" height="45" fill="#2d6a2d" />
-              <rect x="2" y="1" width="76" height="43" fill="none" stroke="white" strokeWidth="0.8" />
-              <line x1="2" y1="22.5" x2="78" y2="22.5" stroke="white" strokeWidth="0.6" />
-              <circle cx="40" cy="22.5" r="7" fill="none" stroke="white" strokeWidth="0.6" />
-            </svg>
-          </div>
-          {/* Slide number */}
-          <span
-            className="text-xs"
-            style={{ color: i === activeSlideIndex ? '#a5b4fc' : '#6b7280' }}
-          >
-            {i + 1}
-          </span>
-        </button>
-      ))}
+            {/* Mini pitch thumbnail */}
+            <div style={{
+              width: 96,
+              height: 54,
+              borderRadius: 6,
+              overflow: 'hidden',
+              border: isActive
+                ? '2px solid #6366f1'
+                : '2px solid rgba(255,255,255,0.1)',
+              boxShadow: isActive ? '0 0 0 1px #6366f1, 0 0 12px rgba(99,102,241,0.3)' : 'none',
+              transition: 'all 0.15s',
+              position: 'relative',
+            }}>
+              {/* Mini pitch SVG */}
+              <svg viewBox="0 0 96 54" width="96" height="54" style={{ display: 'block' }}>
+                {/* Grass stripes */}
+                <defs>
+                  <pattern id={`g${i}`} patternUnits="userSpaceOnUse" width="8" height="54">
+                    <rect width="4"  height="54" fill="#2d7a2d" />
+                    <rect x="4" width="4" height="54" fill="#297029" />
+                  </pattern>
+                </defs>
+                <rect width="96" height="54" fill={`url(#g${i})`} />
+                {/* Boundary */}
+                <rect x="2" y="2" width="92" height="50" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="0.6" />
+                {/* Halfway */}
+                <line x1="48" y1="2" x2="48" y2="52" stroke="rgba(255,255,255,0.5)" strokeWidth="0.6" />
+                {/* Centre circle */}
+                <circle cx="48" cy="27" r="7" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="0.6" />
+                {/* Penalty boxes */}
+                <rect x="2" y="14" width="13" height="26" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="0.5" />
+                <rect x="81" y="14" width="13" height="26" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="0.5" />
+              </svg>
 
-      {/* Add slide button */}
+              {/* Slide number overlay */}
+              {isActive && (
+                <div style={{
+                  position: 'absolute', top: 3, right: 5,
+                  fontSize: 9, fontWeight: 700, color: '#a5b4fc',
+                }}>
+                  ●
+                </div>
+              )}
+            </div>
+
+            {/* Label */}
+            <span style={{
+              fontSize: 10,
+              fontWeight: isActive ? 600 : 400,
+              color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.35)',
+              letterSpacing: '0.04em',
+            }}>
+              {i + 1}
+            </span>
+          </button>
+        )
+      })}
+
+      {/* Add slide */}
       <button
         onClick={() => duplicateSlide(slides.length - 1)}
-        className="flex-shrink-0 flex items-center justify-center rounded text-gray-400 hover:text-white transition-colors"
         style={{
-          width: 80,
-          height: 45,
-          border: '2px dashed rgba(255,255,255,0.2)',
+          flexShrink: 0,
+          width: 96,
+          height: 54,
+          borderRadius: 6,
+          border: '2px dashed rgba(255,255,255,0.12)',
+          background: 'transparent',
+          color: 'rgba(255,255,255,0.25)',
           fontSize: 22,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.15s',
         }}
         title="Add slide"
+        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.5)' }}
+        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.25)' }}
       >
         +
       </button>

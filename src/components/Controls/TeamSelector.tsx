@@ -10,9 +10,18 @@ import ENG from '../../data/ENG.json'
 
 const BUILT_IN_TEAMS = [BRA, ARG, GER, ESP, ENG]
 
-interface Props {
-  slot: TeamSlot
+const selectStyle: React.CSSProperties = {
+  fontSize: 12,
+  borderRadius: 6,
+  padding: '5px 8px',
+  background: 'rgba(255,255,255,0.05)',
+  color: '#e2e8f0',
+  border: '1px solid rgba(255,255,255,0.1)',
+  outline: 'none',
+  cursor: 'pointer',
 }
+
+interface Props { slot: TeamSlot }
 
 export function TeamSelector({ slot }: Props) {
   const loadTeam = useBoardStore(s => s.loadTeam)
@@ -23,13 +32,8 @@ export function TeamSelector({ slot }: Props) {
 
   function handleTeamChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const code = e.target.value
-    if (!code) return
     const found = BUILT_IN_TEAMS.find(t => t.code === code)
     if (found) loadTeam(slot, found as any)
-  }
-
-  function handleFormationChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setFormation(slot, e.target.value)
   }
 
   function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -37,66 +41,57 @@ export function TeamSelector({ slot }: Props) {
     if (!file) return
     const reader = new FileReader()
     reader.onload = ev => {
-      try {
-        const data = JSON.parse(ev.target?.result as string)
-        loadTeam(slot, data)
-      } catch {
-        alert('Invalid JSON file')
-      }
+      try { loadTeam(slot, JSON.parse(ev.target?.result as string)) }
+      catch { alert('Invalid JSON') }
     }
     reader.readAsText(file)
   }
 
-  const accentColor = team?.primaryColor ?? '#6b7280'
-  const label = slot === 'A' ? 'Team A' : 'Team B'
+  const isRight = slot === 'B'
 
   return (
-    <div className="flex items-center gap-2 flex-shrink-0">
-      {/* Colour dot + label */}
-      <div className="flex items-center gap-1.5">
-        <div
-          className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-          style={{ background: accentColor, border: '1px solid rgba(255,255,255,0.3)' }}
-        />
-        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide w-12">{label}</span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexDirection: isRight ? 'row-reverse' : 'row' }}>
+      {/* Colour swatch + team name */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexDirection: isRight ? 'row-reverse' : 'row' }}>
+        <div style={{
+          width: 10, height: 10, borderRadius: '50%',
+          background: team?.primaryColor ?? 'rgba(255,255,255,0.2)',
+          border: '1.5px solid rgba(255,255,255,0.25)',
+          flexShrink: 0,
+        }} />
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+          {slot === 'A' ? 'Team A' : 'Team B'}
+        </span>
       </div>
 
+      <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
+
       {/* Team dropdown */}
-      <select
-        className="text-xs rounded px-2 py-1.5 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-gray-400"
-        onChange={handleTeamChange}
-        value={team?.code ?? ''}
-      >
+      <select style={selectStyle} value={team?.code ?? ''} onChange={handleTeamChange}>
         <option value="" disabled>Select team…</option>
-        {BUILT_IN_TEAMS.map(t => (
-          <option key={t.code} value={t.code}>{t.team}</option>
-        ))}
+        {BUILT_IN_TEAMS.map(t => <option key={t.code} value={t.code}>{t.team}</option>)}
       </select>
 
       {/* Formation dropdown */}
-      <select
-        className="text-xs rounded px-2 py-1.5 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-gray-400"
-        value={formation}
-        onChange={handleFormationChange}
-      >
-        {FORMATIONS.map(f => (
-          <option key={f} value={f}>{f}</option>
-        ))}
+      <select style={selectStyle} value={formation} onChange={e => setFormation(slot, e.target.value)}>
+        {FORMATIONS.map(f => <option key={f} value={f}>{f}</option>)}
       </select>
 
-      {/* Custom JSON upload */}
+      {/* Custom JSON */}
       <button
-        className="text-xs rounded px-2 py-1.5 bg-gray-700 text-gray-400 border border-gray-600 hover:bg-gray-600 hover:text-white transition-colors whitespace-nowrap"
         onClick={() => fileRef.current?.click()}
         title="Load custom team JSON"
+        style={{ ...selectStyle, padding: '5px 10px', color: 'rgba(255,255,255,0.4)', whiteSpace: 'nowrap' }}
       >
         ↑ JSON
       </button>
-      <input ref={fileRef} type="file" accept=".json" className="hidden" onChange={handleFileUpload} />
+      <input ref={fileRef} type="file" accept=".json" style={{ display: 'none' }} onChange={handleFileUpload} />
 
-      {/* Coach name */}
+      {/* Coach */}
       {team && (
-        <span className="text-xs text-gray-500 hidden xl:block truncate max-w-32">{team.coach}</span>
+        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {team.coach}
+        </span>
       )}
     </div>
   )

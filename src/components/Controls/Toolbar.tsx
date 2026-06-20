@@ -7,75 +7,74 @@ interface Props {
   boardRef: React.RefObject<HTMLElement | null>
 }
 
+const btnBase: React.CSSProperties = {
+  display: 'flex', alignItems: 'center', gap: 6,
+  padding: '5px 12px', borderRadius: 6, fontSize: 12, fontWeight: 500,
+  cursor: 'pointer', border: 'none', transition: 'all 0.15s',
+  whiteSpace: 'nowrap',
+}
+
 export function Toolbar({ boardRef }: Props) {
   const { activeSlideIndex, slides, duplicateSlide, deleteSlide, setActiveSlide } = useBoardStore()
 
-  function handleDuplicate() {
-    duplicateSlide(activeSlideIndex)
-  }
-
-  function handleDeleteSlide() {
-    if (slides.length === 1) return
-    deleteSlide(activeSlideIndex)
-  }
-
   async function handleExportPNG() {
-    if (!boardRef.current) return
-    await exportPNG(boardRef.current, `tactics-slide-${activeSlideIndex + 1}.png`)
+    if (boardRef.current) await exportPNG(boardRef.current, `tactics-${activeSlideIndex + 1}.png`)
   }
 
   async function handleExportPDF() {
-    await exportAllSlidesPDF(
-      () => boardRef.current,
-      setActiveSlide,
-      slides.length,
-      'tactics.pdf'
-    )
+    await exportAllSlidesPDF(() => boardRef.current, setActiveSlide, slides.length, 'tactics.pdf')
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      {/* Slide counter */}
+      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginRight: 4 }}>
+        Slide {activeSlideIndex + 1} / {slides.length}
+      </span>
+
+      <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
+
+      {/* Duplicate */}
       <button
-        onClick={handleDuplicate}
+        onClick={() => duplicateSlide(activeSlideIndex)}
+        style={{ ...btnBase, background: '#4f46e5', color: '#fff' }}
         title="Duplicate slide"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
       >
         <Copy size={13} />
         Duplicate
       </button>
 
+      {/* Delete */}
       <button
-        onClick={handleDeleteSlide}
+        onClick={() => deleteSlide(activeSlideIndex)}
         disabled={slides.length === 1}
         title="Delete slide"
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-gray-700 hover:bg-red-700 disabled:opacity-30 text-white text-xs transition-colors"
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', padding: '5px 8px' }}
       >
         <Trash2 size={13} />
       </button>
 
-      <div className="w-px h-5 bg-gray-600 mx-1" />
+      <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
 
+      {/* PNG */}
       <button
         onClick={handleExportPNG}
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
         title="Export current slide as PNG"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white text-xs transition-colors"
       >
         <ImageDown size={13} />
         PNG
       </button>
 
+      {/* PDF */}
       <button
         onClick={handleExportPDF}
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
         title="Export all slides as PDF"
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white text-xs transition-colors"
       >
         <FileDown size={13} />
         PDF
       </button>
-
-      <div className="ml-2 text-xs text-gray-500">
-        Slide {activeSlideIndex + 1} / {slides.length}
-      </div>
     </div>
   )
 }
