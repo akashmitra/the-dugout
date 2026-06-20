@@ -24,34 +24,48 @@ const selectStyle: React.CSSProperties = {
 interface Props { slot: TeamSlot }
 
 export function TeamSelector({ slot }: Props) {
-  const loadTeam = useBoardStore(s => s.loadTeam)
-  const setFormation = useBoardStore(s => s.setFormation)
-  const team = useBoardStore(s => slot === 'A' ? s.teamA : s.teamB)
+  const setFormation  = useBoardStore(s => s.setFormation)
+  const openSquadModal = useBoardStore(s => s.openSquadModal)
+  const team      = useBoardStore(s => slot === 'A' ? s.teamA : s.teamB)
   const formation = useBoardStore(s => slot === 'A' ? s.formationA : s.formationB)
   const fileRef = useRef<HTMLInputElement>(null)
 
   function handleTeamChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const code = e.target.value
     const found = BUILT_IN_TEAMS.find(t => t.code === code)
-    if (found) loadTeam(slot, found as any)
+    if (found) openSquadModal(slot, found as any)
+    // Reset the select visually so re-selecting same team re-opens modal
+    e.target.value = team?.code ?? ''
   }
 
-  function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
-    const reader = new FileReader()
-    reader.onload = ev => {
-      try { loadTeam(slot, JSON.parse(ev.target?.result as string)) }
-      catch { alert('Invalid JSON') }
+    e.target.value = ''
+    const text = await file.text()
+    try {
+      const data = JSON.parse(text)
+      // Persist to src/data via dev server plugin
+      try {
+        await fetch('/api/save-team', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: data.code, content: text }),
+        })
+      } catch {
+        // Non-fatal — save to disk fails silently in prod; team still loads
+      }
+      openSquadModal(slot, data)
+    } catch {
+      alert('Invalid JSON file. Please check the format.')
     }
-    reader.readAsText(file)
   }
 
   const isRight = slot === 'B'
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexDirection: isRight ? 'row-reverse' : 'row' }}>
-      {/* Colour swatch + team name */}
+      {/* Colour swatch + label */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexDirection: isRight ? 'row-reverse' : 'row' }}>
         <div style={{
           width: 10, height: 10, borderRadius: '50%',
@@ -67,7 +81,11 @@ export function TeamSelector({ slot }: Props) {
       <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
 
       {/* Team dropdown */}
-      <select style={selectStyle} value={team?.code ?? ''} onChange={handleTeamChange}>
+      <select
+        style={selectStyle}
+        value={team?.code ?? ''}
+        onChange={handleTeamChange}
+      >
         <option value="" disabled>Select team…</option>
         {BUILT_IN_TEAMS.map(t => <option key={t.code} value={t.code}>{t.team}</option>)}
       </select>
@@ -77,19 +95,19 @@ export function TeamSelector({ slot }: Props) {
         {FORMATIONS.map(f => <option key={f} value={f}>{f}</option>)}
       </select>
 
-      {/* Custom JSON */}
+      {/* Custom JSON upload */}
       <button
         onClick={() => fileRef.current?.click()}
         title="Load custom team JSON"
-        style={{ ...selectStyle, padding: '5px 10px', color: 'rgba(255,255,255,0.4)', whiteSpace: 'nowrap' }}
+        style={{ ...selectStyle, padding: '5px 10px', color: 'rgba(255,255,255,0.5)', whiteSpace: 'nowrap' }}
       >
         ↑ JSON
       </button>
       <input ref={fileRef} type="file" accept=".json" style={{ display: 'none' }} onChange={handleFileUpload} />
 
-      {/* Coach */}
+      {/* Coach name */}
       {team && (
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {team.coach}
         </span>
       )}

@@ -3,6 +3,7 @@ import { Board } from './components/Board/Board'
 import { TeamSelector } from './components/Controls/TeamSelector'
 import { Toolbar } from './components/Controls/Toolbar'
 import { SlidePanel } from './components/SlidePanel/SlidePanel'
+import { SquadModal } from './components/SquadModal/SquadModal'
 
 export default function App() {
   const boardRef = useRef<HTMLElement>(null)
@@ -88,6 +89,9 @@ export default function App() {
 
       {/* Slide panel */}
       <SlidePanel />
+
+      {/* Squad selection modal — rendered at root level to escape stacking contexts */}
+      <SquadModal />
     </div>
   )
 }
