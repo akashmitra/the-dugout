@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import type { TeamData, Slide, TeamSlot, Position } from '../types'
 import { getFormationPositions } from '../utils/formations'
+import { exportGameplan, parseGameplan } from '../utils/gameplan'
 
 interface BoardStore {
   slides: Slide[]
@@ -21,6 +22,10 @@ interface BoardStore {
   duplicateSlide: (index: number) => void
   deleteSlide: (index: number) => void
   setActiveSlide: (index: number) => void
+
+  // Gameplan import/export
+  exportGameplan: () => void
+  importGameplan: (file: File) => Promise<void>
 
   // Modal flow
   openSquadModal: (slot: TeamSlot, team: TeamData) => void
@@ -117,6 +122,24 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
   },
 
   setActiveSlide: (index) => set({ activeSlideIndex: index }),
+
+  exportGameplan: () => {
+    const { teamA, teamB, formationA, formationB, slides } = get()
+    exportGameplan(teamA, teamB, formationA, formationB, slides)
+  },
+
+  importGameplan: async (file) => {
+    const text = await file.text()
+    const data = parseGameplan(JSON.parse(text))
+    set({
+      teamA: data.teamA,
+      teamB: data.teamB,
+      formationA: data.formationA,
+      formationB: data.formationB,
+      slides: data.slides,
+      activeSlideIndex: 0,
+    })
+  },
 
   openSquadModal: (slot, team) => set({ pendingTeam: team, pendingSlot: slot }),
 

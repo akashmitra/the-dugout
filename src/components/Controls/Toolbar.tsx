@@ -1,4 +1,5 @@
-import { Copy, ImageDown, FileDown, Trash2, Play } from 'lucide-react'
+import { useRef } from 'react'
+import { Copy, ImageDown, FileDown, Trash2, Play, Upload, Download } from 'lucide-react'
 import { useBoardStore } from '../../store/useBoardStore'
 import { exportPNG } from '../../utils/exportPNG'
 import { exportAllSlidesPDF } from '../../utils/exportPDF'
@@ -16,7 +17,19 @@ const btnBase: React.CSSProperties = {
 }
 
 export function Toolbar({ boardRef, onPlay }: Props) {
-  const { activeSlideIndex, slides, duplicateSlide, deleteSlide, setActiveSlide } = useBoardStore()
+  const { activeSlideIndex, slides, duplicateSlide, deleteSlide, setActiveSlide, exportGameplan, importGameplan } = useBoardStore()
+  const importInputRef = useRef<HTMLInputElement>(null)
+
+  async function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    try {
+      await importGameplan(file)
+    } catch (err) {
+      alert(`Failed to import gameplan: ${(err as Error).message}`)
+    }
+    e.target.value = ''
+  }
 
   async function handleExportPNG() {
     if (boardRef.current) await exportPNG(boardRef.current, `tactics-${activeSlideIndex + 1}.png`)
@@ -90,6 +103,35 @@ export function Toolbar({ boardRef, onPlay }: Props) {
         <FileDown size={13} />
         PDF
       </button>
+
+      <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
+
+      {/* Export Gameplan */}
+      <button
+        onClick={exportGameplan}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.08)' }}
+        title="Export gameplan as JSON"
+      >
+        <Download size={13} />
+        Gameplan
+      </button>
+
+      {/* Import Gameplan */}
+      <button
+        onClick={() => importInputRef.current?.click()}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.08)' }}
+        title="Import gameplan from JSON"
+      >
+        <Upload size={13} />
+        Import
+      </button>
+      <input
+        ref={importInputRef}
+        type="file"
+        accept=".json,application/json"
+        style={{ display: 'none' }}
+        onChange={handleImport}
+      />
     </div>
   )
 }
