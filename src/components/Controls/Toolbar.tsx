@@ -9,9 +9,9 @@ interface Props {
 
 const btnBase: React.CSSProperties = {
   display: 'flex', alignItems: 'center', gap: 6,
-  padding: '5px 12px', borderRadius: 6, fontSize: 12, fontWeight: 500,
+  padding: '6px 14px', borderRadius: 6, fontSize: 12, fontWeight: 600,
   cursor: 'pointer', border: 'none', transition: 'all 0.15s',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'nowrap', letterSpacing: '0.02em',
 }
 
 export function Toolbar({ boardRef }: Props) {
@@ -28,7 +28,11 @@ export function Toolbar({ boardRef }: Props) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       {/* Slide counter */}
-      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginRight: 4 }}>
+      <span style={{
+        fontSize: 11, color: 'rgba(255,255,255,0.35)', marginRight: 4,
+        background: 'rgba(255,255,255,0.05)', padding: '3px 10px',
+        borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)',
+      }}>
         Slide {activeSlideIndex + 1} / {slides.length}
       </span>
 
@@ -37,7 +41,7 @@ export function Toolbar({ boardRef }: Props) {
       {/* Duplicate */}
       <button
         onClick={() => duplicateSlide(activeSlideIndex)}
-        style={{ ...btnBase, background: '#4f46e5', color: '#fff' }}
+        style={{ ...btnBase, background: '#03b16b', color: '#fff' }}
         title="Duplicate slide"
       >
         <Copy size={13} />
@@ -49,7 +53,7 @@ export function Toolbar({ boardRef }: Props) {
         onClick={() => deleteSlide(activeSlideIndex)}
         disabled={slides.length === 1}
         title="Delete slide"
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', padding: '5px 8px' }}
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)', padding: '6px 10px', border: '1px solid rgba(255,255,255,0.07)' }}
       >
         <Trash2 size={13} />
       </button>
@@ -59,7 +63,7 @@ export function Toolbar({ boardRef }: Props) {
       {/* PNG */}
       <button
         onClick={handleExportPNG}
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.09)' }}
         title="Export current slide as PNG"
       >
         <ImageDown size={13} />
@@ -69,7 +73,7 @@ export function Toolbar({ boardRef }: Props) {
       {/* PDF */}
       <button
         onClick={handleExportPDF}
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
+        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.09)' }}
         title="Export all slides as PDF"
       >
         <FileDown size={13} />

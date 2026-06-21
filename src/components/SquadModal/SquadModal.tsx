@@ -90,11 +90,11 @@ export function SquadModal() {
       <div style={{
         position: 'fixed', top: '50%', left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 520, maxWidth: '95vw', maxHeight: '85vh',
-        background: '#161b27',
-        border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: 14,
-        boxShadow: '0 24px 80px rgba(0,0,0,0.7)',
+        width: 540, maxWidth: '95vw', maxHeight: '85vh',
+        background: '#0f1520',
+        border: '1px solid rgba(255,255,255,0.09)',
+        borderRadius: 12,
+        boxShadow: '0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(3,177,107,0.08)',
         display: 'flex', flexDirection: 'column',
         zIndex: 101, overflow: 'hidden',
       }}>
@@ -137,11 +137,11 @@ export function SquadModal() {
           {/* Counter badge */}
           <div style={{
             padding: '6px 14px', borderRadius: 20,
-            background: canConfirm ? 'rgba(99,102,241,0.2)' : 'rgba(255,255,255,0.06)',
-            border: `1px solid ${canConfirm ? '#6366f1' : 'rgba(255,255,255,0.1)'}`,
+            background: canConfirm ? 'rgba(3,177,107,0.15)' : 'rgba(255,255,255,0.06)',
+            border: `1px solid ${canConfirm ? '#03b16b' : 'rgba(255,255,255,0.1)'}`,
             transition: 'all 0.2s',
           }}>
-            <span style={{ fontSize: 20, fontWeight: 800, color: canConfirm ? '#a5b4fc' : '#f1f5f9' }}>
+            <span style={{ fontSize: 20, fontWeight: 800, color: canConfirm ? '#03b16b' : '#f1f5f9' }}>
               {count}
             </span>
             <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginLeft: 4 }}>/11</span>
@@ -170,9 +170,9 @@ export function SquadModal() {
               style={{
                 padding: '4px 12px', borderRadius: 20, fontSize: 11,
                 fontWeight: 600, letterSpacing: '0.06em', cursor: 'pointer',
-                border: `1px solid ${filter === tab ? (tab === 'ALL' ? '#6366f1' : GROUP_COLOR[tab]) : 'rgba(255,255,255,0.08)'}`,
-                background: filter === tab ? (tab === 'ALL' ? 'rgba(99,102,241,0.15)' : `${GROUP_COLOR[tab]}22`) : 'transparent',
-                color: filter === tab ? (tab === 'ALL' ? '#a5b4fc' : GROUP_COLOR[tab]) : 'rgba(255,255,255,0.4)',
+                border: `1px solid ${filter === tab ? (tab === 'ALL' ? '#03b16b' : GROUP_COLOR[tab]) : 'rgba(255,255,255,0.08)'}`,
+                background: filter === tab ? (tab === 'ALL' ? 'rgba(3,177,107,0.15)' : `${GROUP_COLOR[tab]}22`) : 'transparent',
+                color: filter === tab ? (tab === 'ALL' ? '#03b16b' : GROUP_COLOR[tab]) : 'rgba(255,255,255,0.4)',
                 transition: 'all 0.15s',
               }}
             >
@@ -278,7 +278,7 @@ export function SquadModal() {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           flexShrink: 0, background: 'rgba(0,0,0,0.2)',
         }}>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)' }}>
+          <span style={{ fontSize: 12, color: canConfirm ? '#03b16b' : 'rgba(255,255,255,0.35)' }}>
             {canConfirm ? '✓ Starting 11 ready' : `${11 - count} more player${11 - count !== 1 ? 's' : ''} needed`}
           </span>
           <div style={{ display: 'flex', gap: 10 }}>
@@ -297,7 +297,7 @@ export function SquadModal() {
               disabled={!canConfirm}
               style={{
                 padding: '8px 22px', borderRadius: 8, fontSize: 13, fontWeight: 600,
-                background: canConfirm ? '#6366f1' : 'rgba(99,102,241,0.3)',
+                background: canConfirm ? '#03b16b' : 'rgba(3,177,107,0.2)',
                 color: canConfirm ? '#fff' : 'rgba(255,255,255,0.3)',
                 border: 'none', cursor: canConfirm ? 'pointer' : 'not-allowed',
                 transition: 'all 0.15s',
