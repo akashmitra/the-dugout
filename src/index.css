@@ -18,3 +18,29 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* Range slider thumb */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #03b16b;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 2px rgba(3,177,107,0.25);
+  transition: box-shadow 0.15s;
+}
+input[type='range']::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 4px rgba(3,177,107,0.3);
+}
+input[type='range']::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #03b16b;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 2px rgba(3,177,107,0.25);
+}

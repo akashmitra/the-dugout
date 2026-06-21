@@ -10,6 +10,8 @@ interface Props {
   secondaryColor: string
   pitchRef: React.RefObject<HTMLElement | null>
   onMove: (x: number, y: number) => void
+  size?: number
+  opacity?: number
 }
 
 // Luminance-based contrast check — returns black or white text
@@ -22,15 +24,14 @@ function contrastColor(hex: string): string {
   return lum > 0.55 ? '#111' : '#fff'
 }
 
-export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchRef, onMove }: Props) {
+export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchRef, onMove, size = 30, opacity = 1 }: Props) {
   const [imgError, setImgError] = useState(false)
   const { onPointerDown, onPointerMove, onPointerUp } = useDrag({ onMove, containerRef: pitchRef })
 
-  // Last name only, max 8 chars
   const lastName = (player.name.split(' ').pop() ?? player.name).slice(0, 10)
   const textColor = contrastColor(primaryColor)
 
-  const SIZE = 30
+  const SIZE = size
 
   return (
     <div
@@ -47,6 +48,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
         touchAction: 'none',
         cursor: 'grab',
         userSelect: 'none',
+        opacity,
         filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.7))',
       }}
       onPointerDown={onPointerDown}

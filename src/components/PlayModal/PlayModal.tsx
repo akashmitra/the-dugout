@@ -19,13 +19,15 @@ interface PlayTokenProps {
   primaryColor: string
   secondaryColor: string
   transition: boolean
+  size?: number
+  opacity?: number
 }
 
-function PlayToken({ player, x, y, primaryColor, secondaryColor, transition }: PlayTokenProps) {
+function PlayToken({ player, x, y, primaryColor, secondaryColor, transition, size = 36, opacity = 1 }: PlayTokenProps) {
   const [imgError, setImgError] = useState(false)
   const textColor = contrastColor(primaryColor)
   const lastName = (player.name.split(' ').pop() ?? player.name).toUpperCase()
-  const SIZE = 36
+  const SIZE = size
 
   return (
     <div style={{
@@ -38,6 +40,7 @@ function PlayToken({ player, x, y, primaryColor, secondaryColor, transition }: P
         : 'none',
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
       zIndex: 10, pointerEvents: 'none',
+      opacity,
       filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.7))',
     }}>
       <div style={{
@@ -83,7 +86,7 @@ interface Props {
 }
 
 export function PlayModal({ onClose }: Props) {
-  const { slides, activeSlideIndex, teamA, teamB } = useBoardStore()
+  const { slides, activeSlideIndex, teamA, teamB, tokenSizeA, tokenOpacityA, tokenSizeB, tokenOpacityB } = useBoardStore()
 
   const [slideIndex, setSlideIndex] = useState(activeSlideIndex)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -236,6 +239,8 @@ export function PlayModal({ onClose }: Props) {
                 primaryColor={teamA.primaryColor}
                 secondaryColor={teamA.secondaryColor}
                 transition={transitionEnabled}
+                size={tokenSizeA}
+                opacity={tokenOpacityA}
               />
             )
           })}
@@ -251,6 +256,8 @@ export function PlayModal({ onClose }: Props) {
                 primaryColor={teamB.primaryColor}
                 secondaryColor={teamB.secondaryColor}
                 transition={transitionEnabled}
+                size={tokenSizeB}
+                opacity={tokenOpacityB}
               />
             )
           })}

@@ -5,6 +5,7 @@ import { Toolbar } from './components/Controls/Toolbar'
 import { SlidePanel } from './components/SlidePanel/SlidePanel'
 import { SquadModal } from './components/SquadModal/SquadModal'
 import { PlayModal } from './components/PlayModal/PlayModal'
+import { TokenControls } from './components/Controls/TokenControls'
 
 export default function App() {
   const boardRef = useRef<HTMLElement>(null)
@@ -73,6 +74,9 @@ export default function App() {
           <TeamSelector slot="B" />
         </div>
       </div>
+
+      {/* Token style controls — only shown when a team is loaded */}
+      <TokenControls />
 
       {/* Pitch */}
       <main style={{
