@@ -47,10 +47,12 @@ export default function App() {
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         flexShrink: 0,
         gap: 0,
-        overflow: 'hidden',
+        overflow: 'visible',
+        position: 'relative',
+        zIndex: 50,
       }}>
         {/* Team A — left aligned */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'visible' }}>
           <TeamSelector slot="A" />
         </div>
 
@@ -69,7 +71,7 @@ export default function App() {
         }}>VS</div>
 
         {/* Team B — right aligned */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflow: 'visible' }}>
           <TeamSelector slot="B" />
         </div>
       </div>

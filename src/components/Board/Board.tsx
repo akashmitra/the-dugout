@@ -17,7 +17,7 @@ export function Board({ boardRef }: Props) {
     boardRef.current = outerRef.current
     return () => { boardRef.current = null }
   })
-  const { slides, activeSlideIndex, teamA, teamB, updatePlayerPosition, updateBallPosition } = useBoardStore()
+  const { slides, activeSlideIndex, teamA, teamB, updatePlayerPosition, updateBallPosition, tokenSizeA, tokenOpacityA, tokenSizeB, tokenOpacityB } = useBoardStore()
   const slide = slides[activeSlideIndex]
 
   return (
@@ -52,6 +52,8 @@ export function Board({ boardRef }: Props) {
               secondaryColor={teamA.secondaryColor}
               pitchRef={pitchRef}
               onMove={(x, y) => updatePlayerPosition(activeSlideIndex, 'A', player.id, { x, y })}
+              size={tokenSizeA}
+              opacity={tokenOpacityA}
             />
           )
         })}
@@ -68,6 +70,8 @@ export function Board({ boardRef }: Props) {
               secondaryColor={teamB.secondaryColor}
               pitchRef={pitchRef}
               onMove={(x, y) => updatePlayerPosition(activeSlideIndex, 'B', player.id, { x, y })}
+              size={tokenSizeB}
+              opacity={tokenOpacityB}
             />
           )
         })}

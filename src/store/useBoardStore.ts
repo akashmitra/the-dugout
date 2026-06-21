@@ -10,6 +10,11 @@ interface BoardStore {
   teamB: TeamData | null
   formationA: string
   formationB: string
+  tokenSizeA: number
+  tokenOpacityA: number
+  tokenSizeB: number
+  tokenOpacityB: number
+  setTokenStyle: (slot: TeamSlot, size: number, opacity: number) => void
 
   // Pending team: loaded but awaiting squad selection via modal
   pendingTeam: TeamData | null
@@ -22,6 +27,8 @@ interface BoardStore {
   duplicateSlide: (index: number) => void
   deleteSlide: (index: number) => void
   setActiveSlide: (index: number) => void
+
+  // Token style actions are defined inline above
 
   // Gameplan import/export
   exportGameplan: () => void
@@ -61,6 +68,10 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
   formationB: '4-4-2',
   pendingTeam: null,
   pendingSlot: null,
+  tokenSizeA: 30,
+  tokenOpacityA: 1,
+  tokenSizeB: 30,
+  tokenOpacityB: 1,
 
   loadTeam: (slot, team) => {
     const state = get()
@@ -123,9 +134,15 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
 
   setActiveSlide: (index) => set({ activeSlideIndex: index }),
 
+  setTokenStyle: (slot, size, opacity) => set(
+    slot === 'A'
+      ? { tokenSizeA: size, tokenOpacityA: opacity }
+      : { tokenSizeB: size, tokenOpacityB: opacity }
+  ),
+
   exportGameplan: () => {
-    const { teamA, teamB, formationA, formationB, slides } = get()
-    exportGameplan(teamA, teamB, formationA, formationB, slides)
+    const { teamA, teamB, formationA, formationB, slides, tokenSizeA, tokenOpacityA, tokenSizeB, tokenOpacityB } = get()
+    exportGameplan(teamA, teamB, formationA, formationB, slides, { tokenSizeA, tokenOpacityA, tokenSizeB, tokenOpacityB })
   },
 
   importGameplan: async (file) => {
@@ -138,6 +155,10 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
       formationB: data.formationB,
       slides: data.slides,
       activeSlideIndex: 0,
+      tokenSizeA: data.tokenSizeA ?? 30,
+      tokenOpacityA: data.tokenOpacityA ?? 1,
+      tokenSizeB: data.tokenSizeB ?? 30,
+      tokenOpacityB: data.tokenOpacityB ?? 1,
     })
   },
 

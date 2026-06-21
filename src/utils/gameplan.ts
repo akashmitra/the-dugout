@@ -7,7 +7,18 @@ export interface GameplanFile {
   formationB: string
   teamA: TeamData | null
   teamB: TeamData | null
+  tokenSizeA?: number
+  tokenOpacityA?: number
+  tokenSizeB?: number
+  tokenOpacityB?: number
   slides: (Slide & { annotations: unknown[] })[]
+}
+
+interface TokenStyles {
+  tokenSizeA: number
+  tokenOpacityA: number
+  tokenSizeB: number
+  tokenOpacityB: number
 }
 
 export function exportGameplan(
@@ -15,7 +26,8 @@ export function exportGameplan(
   teamB: TeamData | null,
   formationA: string,
   formationB: string,
-  slides: Slide[]
+  slides: Slide[],
+  tokenStyles?: TokenStyles
 ): void {
   const data: GameplanFile = {
     version: 1,
@@ -24,6 +36,7 @@ export function exportGameplan(
     formationB,
     teamA,
     teamB,
+    ...tokenStyles,
     slides: slides.map(s => ({ ...s, annotations: [] })),
   }
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
