@@ -9,7 +9,7 @@ export default function App() {
   const boardRef = useRef<HTMLElement>(null)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#080c14', color: 'white', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#000000', color: 'white', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
 
       {/* Row 1 — Logo + Toolbar */}
       <div style={{
@@ -18,7 +18,7 @@ export default function App() {
         justifyContent: 'space-between',
         padding: '0 20px',
         height: 52,
-        background: '#0d1320',
+        background: '#1a1a1a',
         borderBottom: '1px solid rgba(255,255,255,0.07)',
         flexShrink: 0,
       }}>
@@ -41,7 +41,7 @@ export default function App() {
         alignItems: 'center',
         padding: '0 16px',
         height: 54,
-        background: '#0a0f1e',
+        background: '#1a1a1a',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         flexShrink: 0,
         gap: 0,
@@ -81,7 +81,7 @@ export default function App() {
         padding: '16px 20px',
         minHeight: 0,
         overflow: 'hidden',
-        background: '#080c14',
+        background: '#000000',
       }}>
         <div style={{
           width: '100%',

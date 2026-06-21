@@ -10,7 +10,7 @@ export function SlidePanel() {
       gap: 10,
       padding: '10px 20px',
       overflowX: 'auto',
-      background: '#0a0f1e',
+      background: '#1a1a1a',
       borderTop: '1px solid rgba(255,255,255,0.06)',
       flexShrink: 0,
       scrollbarWidth: 'thin',

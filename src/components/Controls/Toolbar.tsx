@@ -30,8 +30,8 @@ export function Toolbar({ boardRef }: Props) {
       {/* Slide counter */}
       <span style={{
         fontSize: 11, color: 'rgba(255,255,255,0.35)', marginRight: 4,
-        background: 'rgba(255,255,255,0.05)', padding: '3px 10px',
-        borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)',
+        background: '#2c2c2c', padding: '3px 10px',
+        borderRadius: 20, border: '1px solid rgba(255,255,255,0.08)',
       }}>
         Slide {activeSlideIndex + 1} / {slides.length}
       </span>
@@ -53,7 +53,7 @@ export function Toolbar({ boardRef }: Props) {
         onClick={() => deleteSlide(activeSlideIndex)}
         disabled={slides.length === 1}
         title="Delete slide"
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)', padding: '6px 10px', border: '1px solid rgba(255,255,255,0.07)' }}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.5)', padding: '6px 10px', border: '1px solid rgba(255,255,255,0.08)' }}
       >
         <Trash2 size={13} />
       </button>
@@ -63,7 +63,7 @@ export function Toolbar({ boardRef }: Props) {
       {/* PNG */}
       <button
         onClick={handleExportPNG}
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.09)' }}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.08)' }}
         title="Export current slide as PNG"
       >
         <ImageDown size={13} />
@@ -73,7 +73,7 @@ export function Toolbar({ boardRef }: Props) {
       {/* PDF */}
       <button
         onClick={handleExportPDF}
-        style={{ ...btnBase, background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.09)' }}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.08)' }}
         title="Export all slides as PDF"
       >
         <FileDown size={13} />
