@@ -7,8 +7,14 @@ import ARG from '../../data/ARG.json'
 import GER from '../../data/GER.json'
 import ESP from '../../data/ESP.json'
 import ENG from '../../data/ENG.json'
+import NED from '../../data/NED.json'
+import BEL from '../../data/BEL.json'
+import FRA from '../../data/FRA.json'
+import NOR from '../../data/NOR.json'
+import POR from '../../data/POR.json'
+import CRO from '../../data/CRO.json'
 
-const BUILT_IN_TEAMS = [BRA, ARG, GER, ESP, ENG]
+const BUILT_IN_TEAMS = [BRA, ARG, GER, ESP, ENG, NED, BEL, FRA, NOR, POR, CRO]
 
 const selectStyle: React.CSSProperties = {
   fontSize: 12,

@@ -4,6 +4,7 @@
   "coach": "Julian Nagelsmann",
   "primaryColor": "#FFFFFF",
   "secondaryColor": "#000000",
+  "fotmobCode": "8570",
   "players": [
     { "id": 1,  "name": "Manuel Neuer",       "number": 1,  "position": "GK",  "image": "GER_1.png"  },
     { "id": 2,  "name": "Antonio Rüdiger",    "number": 2,  "position": "CB",  "image": "GER_2.png"  },
