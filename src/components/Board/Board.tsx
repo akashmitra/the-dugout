@@ -67,13 +67,15 @@ export function Board({ boardRef }: Props) {
           )
         })}
 
-        {/* Ball */}
-        <Ball
-          x={slide.ballPosition.x}
-          y={slide.ballPosition.y}
-          pitchRef={pitchRef}
-          onMove={(x, y) => updateBallPosition(activeSlideIndex, { x, y })}
-        />
+        {/* Ball — only shown when at least one team is loaded */}
+        {(teamA || teamB) && (
+          <Ball
+            x={slide.ballPosition.x}
+            y={slide.ballPosition.y}
+            pitchRef={pitchRef}
+            onMove={(x, y) => updateBallPosition(activeSlideIndex, { x, y })}
+          />
+        )}
 
         {/* Empty state */}
         {!teamA && !teamB && (
@@ -82,7 +84,6 @@ export function Board({ boardRef }: Props) {
             justifyContent: 'center', pointerEvents: 'none', zIndex: 2,
           }}>
             <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.3)' }}>
-              <div style={{ fontSize: 36 }}>⚽</div>
               <div style={{ marginTop: 8, fontSize: 13, fontWeight: 500 }}>Select two teams to get started</div>
             </div>
           </div>

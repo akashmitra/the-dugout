@@ -109,9 +109,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
         padding: '2px 6px',
         borderRadius: 4,
         whiteSpace: 'nowrap',
-        maxWidth: 64,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
+        maxWidth: 'none',
         lineHeight: 1.4,
         border: '1px solid rgba(255,255,255,0.08)',
       }}>
