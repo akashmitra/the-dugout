@@ -30,7 +30,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
   const lastName = (player.name.split(' ').pop() ?? player.name).slice(0, 10)
   const textColor = contrastColor(primaryColor)
 
-  const SIZE = 44
+  const SIZE = 30
 
   return (
     <div
@@ -59,7 +59,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
         height: SIZE,
         borderRadius: '50%',
         background: primaryColor,
-        border: `3px solid ${secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.9)' : secondaryColor}`,
+        border: `2px solid ${secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.9)' : secondaryColor}`,
         boxShadow: `0 0 0 1.5px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15)`,
         overflow: 'hidden',
         position: 'relative',
