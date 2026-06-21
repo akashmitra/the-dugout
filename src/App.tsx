@@ -5,7 +5,6 @@ import { Toolbar } from './components/Controls/Toolbar'
 import { SlidePanel } from './components/SlidePanel/SlidePanel'
 import { SquadModal } from './components/SquadModal/SquadModal'
 import { PlayModal } from './components/PlayModal/PlayModal'
-import { TokenControls } from './components/Controls/TokenControls'
 
 export default function App() {
   const boardRef = useRef<HTMLElement>(null)
@@ -48,10 +47,12 @@ export default function App() {
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         flexShrink: 0,
         gap: 0,
-        overflow: 'hidden',
+        overflow: 'visible',
+        position: 'relative',
+        zIndex: 50,
       }}>
         {/* Team A — left aligned */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'visible' }}>
           <TeamSelector slot="A" />
         </div>
 
@@ -70,13 +71,10 @@ export default function App() {
         }}>VS</div>
 
         {/* Team B — right aligned */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', overflow: 'visible' }}>
           <TeamSelector slot="B" />
         </div>
       </div>
-
-      {/* Token style controls — only shown when a team is loaded */}
-      <TokenControls />
 
       {/* Pitch */}
       <main style={{
