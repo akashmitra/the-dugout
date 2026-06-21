@@ -10,24 +10,27 @@ interface Props {
 
 export function Board({ boardRef }: Props) {
   const pitchRef = useRef<HTMLDivElement>(null)
-  // Mirror the pitch element into the parent-provided ref (used for PNG/PDF export).
-  // Done in an effect so we never write to a prop ref during render.
+  const outerRef = useRef<HTMLDivElement>(null)
+  // Expose the outer container (position: relative, explicit 16:9 dimensions) for export.
+  // html2canvas needs a non-absolutely-positioned root to calculate bounds correctly.
   useEffect(() => {
-    boardRef.current = pitchRef.current
+    boardRef.current = outerRef.current
     return () => { boardRef.current = null }
   })
   const { slides, activeSlideIndex, teamA, teamB, updatePlayerPosition, updateBallPosition } = useBoardStore()
   const slide = slides[activeSlideIndex]
 
   return (
-    <div style={{
-      width: '100%',
-      aspectRatio: '16/9',
-      borderRadius: 10,
-      overflow: 'hidden',
-      boxShadow: '0 0 0 1px rgba(255,255,255,0.07), 0 8px 40px rgba(0,0,0,0.6), 0 0 60px rgba(45,120,45,0.12)',
-      position: 'relative',
-    }}>
+    <div
+      ref={outerRef}
+      style={{
+        width: '100%',
+        aspectRatio: '16/9',
+        borderRadius: 10,
+        overflow: 'hidden',
+        boxShadow: '0 0 0 1px rgba(255,255,255,0.07), 0 8px 40px rgba(0,0,0,0.6), 0 0 60px rgba(45,120,45,0.12)',
+        position: 'relative',
+      }}>
       <div
         ref={pitchRef}
         style={{ position: 'absolute', inset: 0 }}
