@@ -105,18 +105,27 @@ export function SquadModal() {
           borderBottom: '1px solid rgba(255,255,255,0.07)',
           display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0,
         }}>
-          {/* Team colour + name */}
-          <div style={{
-            width: 40, height: 40, borderRadius: '50%',
-            background: team.primaryColor,
-            border: `3px solid ${team.secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.5)' : team.secondaryColor}`,
-            flexShrink: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <span style={{ fontSize: 11, fontWeight: 800, color: contrastColor(team.primaryColor) }}>
-              {team.code}
-            </span>
-          </div>
+          {/* Team badge */}
+          {team.fotmobCode ? (
+            <img
+              src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.fotmobCode}.png`}
+              alt={team.team}
+              width={44} height={44}
+              style={{ objectFit: 'contain', flexShrink: 0 }}
+            />
+          ) : (
+            <div style={{
+              width: 40, height: 40, borderRadius: '50%',
+              background: team.primaryColor,
+              border: `3px solid ${team.secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.5)' : team.secondaryColor}`,
+              flexShrink: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{ fontSize: 11, fontWeight: 800, color: contrastColor(team.primaryColor) }}>
+                {team.code}
+              </span>
+            </div>
+          )}
 
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9' }}>{team.team}</div>

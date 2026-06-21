@@ -71,14 +71,23 @@ export function TeamSelector({ slot }: Props) {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexDirection: isRight ? 'row-reverse' : 'row' }}>
-      {/* Colour swatch + label */}
+      {/* Badge + label */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexDirection: isRight ? 'row-reverse' : 'row' }}>
-        <div style={{
-          width: 10, height: 10, borderRadius: '50%',
-          background: team?.primaryColor ?? 'rgba(255,255,255,0.2)',
-          border: '1.5px solid rgba(255,255,255,0.25)',
-          flexShrink: 0,
-        }} />
+        {team?.fotmobCode ? (
+          <img
+            src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.fotmobCode}.png`}
+            alt={team.team}
+            width={22} height={22}
+            style={{ objectFit: 'contain', flexShrink: 0 }}
+          />
+        ) : (
+          <div style={{
+            width: 10, height: 10, borderRadius: '50%',
+            background: team?.primaryColor ?? 'rgba(255,255,255,0.2)',
+            border: '1.5px solid rgba(255,255,255,0.25)',
+            flexShrink: 0,
+          }} />
+        )}
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
           {slot === 'A' ? 'Team A' : 'Team B'}
         </span>
