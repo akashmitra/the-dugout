@@ -1,10 +1,11 @@
-import { Copy, ImageDown, FileDown, Trash2 } from 'lucide-react'
+import { Copy, ImageDown, FileDown, Trash2, Play } from 'lucide-react'
 import { useBoardStore } from '../../store/useBoardStore'
 import { exportPNG } from '../../utils/exportPNG'
 import { exportAllSlidesPDF } from '../../utils/exportPDF'
 
 interface Props {
   boardRef: React.RefObject<HTMLElement | null>
+  onPlay: () => void
 }
 
 const btnBase: React.CSSProperties = {
@@ -14,7 +15,7 @@ const btnBase: React.CSSProperties = {
   whiteSpace: 'nowrap', letterSpacing: '0.02em',
 }
 
-export function Toolbar({ boardRef }: Props) {
+export function Toolbar({ boardRef, onPlay }: Props) {
   const { activeSlideIndex, slides, duplicateSlide, deleteSlide, setActiveSlide } = useBoardStore()
 
   async function handleExportPNG() {
@@ -38,10 +39,20 @@ export function Toolbar({ boardRef }: Props) {
 
       <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)' }} />
 
+      {/* Play */}
+      <button
+        onClick={onPlay}
+        style={{ ...btnBase, background: '#03b16b', color: '#fff', gap: 7 }}
+        title="Play slide sequence"
+      >
+        <Play size={12} fill="#fff" />
+        Play
+      </button>
+
       {/* Duplicate */}
       <button
         onClick={() => duplicateSlide(activeSlideIndex)}
-        style={{ ...btnBase, background: '#03b16b', color: '#fff' }}
+        style={{ ...btnBase, background: '#2c2c2c', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.08)' }}
         title="Duplicate slide"
       >
         <Copy size={13} />

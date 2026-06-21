@@ -1,12 +1,14 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Board } from './components/Board/Board'
 import { TeamSelector } from './components/Controls/TeamSelector'
 import { Toolbar } from './components/Controls/Toolbar'
 import { SlidePanel } from './components/SlidePanel/SlidePanel'
 import { SquadModal } from './components/SquadModal/SquadModal'
+import { PlayModal } from './components/PlayModal/PlayModal'
 
 export default function App() {
   const boardRef = useRef<HTMLElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#000000', color: 'white', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -32,7 +34,7 @@ export default function App() {
             The Dugout
           </span>
         </div>
-        <Toolbar boardRef={boardRef} />
+        <Toolbar boardRef={boardRef} onPlay={() => setIsPlaying(true)} />
       </div>
 
       {/* Row 2 — Team selectors */}
@@ -97,6 +99,9 @@ export default function App() {
 
       {/* Squad selection modal — rendered at root level to escape stacking contexts */}
       <SquadModal />
+
+      {/* Play modal */}
+      {isPlaying && <PlayModal onClose={() => setIsPlaying(false)} />}
     </div>
   )
 }
