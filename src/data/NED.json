@@ -4,7 +4,7 @@
   "coach": "Ronald Koeman",
   "primaryColor": "#FF6600",
   "secondaryColor": "#FFFFFF",
-  "fotmobCode": "6708",
+  "teamAssetCode": "6708",
   "players": [
     { "id": 1,  "name": "Bart Verbruggen",       "number": 1,  "position": "GK",  "image": "NED_1.png"  },
     { "id": 2,  "name": "Lutsharel Geertruida",  "number": 2,  "position": "RB",  "image": "NED_2.png"  },

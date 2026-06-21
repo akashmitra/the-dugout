@@ -1,4 +1,4 @@
-# FM Whiteboard — Implementation Plan
+# The Dugout — Implementation Plan
 
 ## Overview
 A football tactics whiteboard for managers and analysts. Users load two teams onto a pitch, arrange players using formation presets or freely, duplicate slides to show movement phases, and export as PNG or PDF.

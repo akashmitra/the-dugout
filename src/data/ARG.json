@@ -4,7 +4,7 @@
   "coach": "Lionel Scaloni",
   "primaryColor": "#74ACDF",
   "secondaryColor": "#FFFFFF",
-  "fotmobCode": "6706",
+  "teamAssetCode": "6706",
   "players": [
     { "id": 1,  "name": "Juan Musso",          "number": 1,  "position": "GK",  "image": "ARG_1.png"  },
     { "id": 2,  "name": "Marcos Senesi",       "number": 2,  "position": "CB",  "image": "ARG_2.png"  },

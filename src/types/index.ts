@@ -12,7 +12,7 @@ export interface TeamData {
   coach: string
   primaryColor: string
   secondaryColor: string
-  fotmobCode?: string
+  teamAssetCode?: string
   players: Player[]
 }
 

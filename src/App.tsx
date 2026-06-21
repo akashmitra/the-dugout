@@ -25,7 +25,7 @@ export default function App() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontSize: 20 }}>⚽</span>
           <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.08em', color: '#e2e8f0' }}>
-            FM WHITEBOARD
+            THE DUGOUT
           </span>
         </div>
         <Toolbar boardRef={boardRef} />

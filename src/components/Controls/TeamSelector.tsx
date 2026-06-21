@@ -73,9 +73,9 @@ export function TeamSelector({ slot }: Props) {
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexDirection: isRight ? 'row-reverse' : 'row' }}>
       {/* Badge + label */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexDirection: isRight ? 'row-reverse' : 'row' }}>
-        {team?.fotmobCode ? (
+        {team?.teamAssetCode ? (
           <img
-            src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.fotmobCode}.png`}
+            src={`src/assets/teambadge//${team.teamAssetCode}.png`}
             alt={team.team}
             width={22} height={22}
             style={{ objectFit: 'contain', flexShrink: 0 }}

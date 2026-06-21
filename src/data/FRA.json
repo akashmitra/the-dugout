@@ -4,7 +4,7 @@
   "coach": "Didier Deschamps",
   "primaryColor": "#002395",
   "secondaryColor": "#FFFFFF",
-  "fotmobCode": "6723",
+  "teamAssetCode": "6723",
   "players": [
     { "id": 1,  "name": "Brice Samba",         "number": 1,  "position": "GK",  "image": "FRA_1.png"  },
     { "id": 2,  "name": "Malo Gusto",          "number": 2,  "position": "RB",  "image": "FRA_2.png"  },

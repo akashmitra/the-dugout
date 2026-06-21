@@ -4,7 +4,7 @@
   "coach": "Luis de la Fuente",
   "primaryColor": "#AA151B",
   "secondaryColor": "#F1BF00",
-  "fotmobCode": "6720",
+  "teamAssetCode": "6720",
   "players": [
     { "id": 1,  "name": "David Raya",         "number": 1,  "position": "GK",  "image": "ESP_1.png"  },
     { "id": 2,  "name": "Marc Pubill",        "number": 2,  "position": "RB",  "image": "ESP_2.png"  },

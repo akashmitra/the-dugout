@@ -106,9 +106,9 @@ export function SquadModal() {
           display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0,
         }}>
           {/* Team badge */}
-          {team.fotmobCode ? (
+          {team.teamAssetCode ? (
             <img
-              src={`https://images.fotmob.com/image_resources/logo/teamlogo/${team.fotmobCode}.png`}
+              src={`src/assets/teambadge//${team.teamAssetCode}.png`}
               alt={team.team}
               width={44} height={44}
               style={{ objectFit: 'contain', flexShrink: 0 }}

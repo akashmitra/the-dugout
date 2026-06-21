@@ -4,7 +4,7 @@
   "coach": "Ståle Solbakken",
   "primaryColor": "#EF2B2D",
   "secondaryColor": "#FFFFFF",
-  "fotmobCode": "8492",
+  "teamAssetCode": "8492",
   "players": [
     { "id": 1,  "name": "Ørjan Nyland",              "number": 1,  "position": "GK",  "image": "NOR_1.png"  },
     { "id": 2,  "name": "Morten Thorsby",            "number": 2,  "position": "CM",  "image": "NOR_2.png"  },

@@ -4,7 +4,7 @@
   "coach": "Rudi Garcia",
   "primaryColor": "#CC0000",
   "secondaryColor": "#000000",
-  "fotmobCode": "8263",
+  "teamAssetCode": "8263",
   "players": [
     { "id": 1,  "name": "Thibaut Courtois",        "number": 1,  "position": "GK",  "image": "BEL_1.png"  },
     { "id": 2,  "name": "Zeno Debast",             "number": 2,  "position": "CB",  "image": "BEL_2.png"  },

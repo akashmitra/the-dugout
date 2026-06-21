@@ -4,7 +4,7 @@
   "coach": "Zlatko Dalic",
   "primaryColor": "#CC0000",
   "secondaryColor": "#FFFFFF",
-  "fotmobCode": "10155",
+  "teamAssetCode": "10155",
   "players": [
     { "id": 1,  "name": "Dominik Livakovic",  "number": 1,  "position": "GK",  "image": "CRO_1.png"  },
     { "id": 2,  "name": "Josip Stanisic",     "number": 2,  "position": "RB",  "image": "CRO_2.png"  },

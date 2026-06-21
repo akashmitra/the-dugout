@@ -4,7 +4,7 @@
   "coach": "Roberto Martínez",
   "primaryColor": "#006600",
   "secondaryColor": "#FF0000",
-  "fotmobCode": "8361",
+  "teamAssetCode": "8361",
   "players": [
     { "id": 1,  "name": "Diogo Costa",          "number": 1,  "position": "GK",  "image": "POR_1.png"  },
     { "id": 2,  "name": "Nélson Semedo",         "number": 2,  "position": "RB",  "image": "POR_2.png"  },

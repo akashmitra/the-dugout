@@ -4,7 +4,7 @@
   "coach": "Thomas Tuchel",
   "primaryColor": "#FFFFFF",
   "secondaryColor": "#CF081F",
-  "fotmobCode": "8491",
+  "teamAssetCode": "8491",
   "players": [
     { "id": 1,  "name": "Jordan Pickford",   "number": 1,  "position": "GK",  "image": "ENG_1.png"  },
     { "id": 2,  "name": "Ezri Konsa",        "number": 2,  "position": "CB",  "image": "ENG_2.png"  },
