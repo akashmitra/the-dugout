@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Pitch } from '../Pitch/Pitch'
 import { PlayerToken } from '../PlayerToken/PlayerToken'
 import { Ball } from '../Ball/Ball'
@@ -10,6 +10,12 @@ interface Props {
 
 export function Board({ boardRef }: Props) {
   const pitchRef = useRef<HTMLDivElement>(null)
+  // Mirror the pitch element into the parent-provided ref (used for PNG/PDF export).
+  // Done in an effect so we never write to a prop ref during render.
+  useEffect(() => {
+    boardRef.current = pitchRef.current
+    return () => { boardRef.current = null }
+  })
   const { slides, activeSlideIndex, teamA, teamB, updatePlayerPosition, updateBallPosition } = useBoardStore()
   const slide = slides[activeSlideIndex]
 
@@ -23,11 +29,7 @@ export function Board({ boardRef }: Props) {
       position: 'relative',
     }}>
       <div
-        ref={el => {
-          pitchRef.current = el
-          if (boardRef && 'current' in boardRef)
-            (boardRef as React.MutableRefObject<HTMLElement | null>).current = el
-        }}
+        ref={pitchRef}
         style={{ position: 'absolute', inset: 0 }}
       >
         <Pitch />
