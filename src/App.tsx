@@ -9,7 +9,7 @@ export default function App() {
   const boardRef = useRef<HTMLElement>(null)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#0d1117', color: 'white' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#000000', color: 'white', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
 
       {/* Row 1 — Logo + Toolbar */}
       <div style={{
@@ -17,15 +17,19 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 20px',
-        height: 48,
-        background: '#0d1117',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        height: 52,
+        background: '#1a1a1a',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
         flexShrink: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 20 }}>⚽</span>
-          <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.08em', color: '#e2e8f0' }}>
-            THE DUGOUT
+          {/* Green accent mark */}
+          <div style={{ width: 3, height: 20, borderRadius: 2, background: '#03b16b', flexShrink: 0 }} />
+          <span style={{
+            fontWeight: 800, fontSize: 15, letterSpacing: '0.06em',
+            color: '#ffffff', textTransform: 'uppercase',
+          }}>
+            The Dugout
           </span>
         </div>
         <Toolbar boardRef={boardRef} />
@@ -35,9 +39,9 @@ export default function App() {
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        padding: '0 20px',
-        height: 52,
-        background: 'rgba(255,255,255,0.02)',
+        padding: '0 16px',
+        height: 54,
+        background: '#1a1a1a',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         flexShrink: 0,
         gap: 0,
@@ -51,15 +55,15 @@ export default function App() {
         {/* VS badge */}
         <div style={{
           flexShrink: 0,
-          padding: '3px 14px',
-          borderRadius: 20,
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          color: 'rgba(255,255,255,0.25)',
+          padding: '4px 16px',
+          borderRadius: 6,
+          background: 'rgba(3,177,107,0.08)',
+          border: '1px solid rgba(3,177,107,0.2)',
+          color: '#03b16b',
           fontSize: 11,
-          fontWeight: 700,
-          letterSpacing: '0.12em',
-          margin: '0 16px',
+          fontWeight: 800,
+          letterSpacing: '0.14em',
+          margin: '0 12px',
         }}>VS</div>
 
         {/* Team B — right aligned */}
@@ -74,9 +78,10 @@ export default function App() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '14px 20px',
+        padding: '16px 20px',
         minHeight: 0,
         overflow: 'hidden',
+        background: '#000000',
       }}>
         <div style={{
           width: '100%',

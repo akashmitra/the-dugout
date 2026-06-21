@@ -10,7 +10,7 @@ export function SlidePanel() {
       gap: 10,
       padding: '10px 20px',
       overflowX: 'auto',
-      background: 'rgba(0,0,0,0.35)',
+      background: '#1a1a1a',
       borderTop: '1px solid rgba(255,255,255,0.06)',
       flexShrink: 0,
       scrollbarWidth: 'thin',
@@ -40,9 +40,9 @@ export function SlidePanel() {
               borderRadius: 6,
               overflow: 'hidden',
               border: isActive
-                ? '2px solid #6366f1'
+                ? '2px solid #03b16b'
                 : '2px solid rgba(255,255,255,0.1)',
-              boxShadow: isActive ? '0 0 0 1px #6366f1, 0 0 12px rgba(99,102,241,0.3)' : 'none',
+              boxShadow: isActive ? '0 0 0 1px #03b16b, 0 0 12px rgba(3,177,107,0.25)' : 'none',
               transition: 'all 0.15s',
               position: 'relative',
             }}>
@@ -71,7 +71,7 @@ export function SlidePanel() {
               {isActive && (
                 <div style={{
                   position: 'absolute', top: 3, right: 5,
-                  fontSize: 9, fontWeight: 700, color: '#a5b4fc',
+                  fontSize: 9, fontWeight: 700, color: '#03b16b',
                 }}>
                   ●
                 </div>
@@ -82,7 +82,7 @@ export function SlidePanel() {
             <span style={{
               fontSize: 10,
               fontWeight: isActive ? 600 : 400,
-              color: isActive ? '#a5b4fc' : 'rgba(255,255,255,0.35)',
+              color: isActive ? '#03b16b' : 'rgba(255,255,255,0.35)',
               letterSpacing: '0.04em',
             }}>
               {i + 1}

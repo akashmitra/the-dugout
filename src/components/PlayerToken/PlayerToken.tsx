@@ -30,7 +30,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
   const lastName = (player.name.split(' ').pop() ?? player.name).slice(0, 10)
   const textColor = contrastColor(primaryColor)
 
-  const SIZE = 44
+  const SIZE = 30
 
   return (
     <div
@@ -47,7 +47,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
         touchAction: 'none',
         cursor: 'grab',
         userSelect: 'none',
-        filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.55))',
+        filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.7))',
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -59,7 +59,7 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
         height: SIZE,
         borderRadius: '50%',
         background: primaryColor,
-        border: `3px solid ${secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.9)' : secondaryColor}`,
+        border: `2px solid ${secondaryColor === '#FFFFFF' ? 'rgba(255,255,255,0.9)' : secondaryColor}`,
         boxShadow: `0 0 0 1.5px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15)`,
         overflow: 'hidden',
         position: 'relative',
@@ -100,18 +100,19 @@ export function PlayerToken({ player, x, y, primaryColor, secondaryColor, pitchR
 
       {/* Name pill */}
       <div style={{
-        background: 'rgba(10,10,20,0.82)',
-        backdropFilter: 'blur(4px)',
-        color: '#f1f5f9',
-        fontSize: 9.5,
-        fontWeight: 600,
-        letterSpacing: '0.03em',
-        padding: '2px 6px',
+        background: 'rgba(8,12,20,0.88)',
+        backdropFilter: 'blur(6px)',
+        color: '#e8edf5',
+        fontSize: 9,
+        fontWeight: 700,
+        letterSpacing: '0.04em',
+        padding: '2px 7px',
         borderRadius: 4,
         whiteSpace: 'nowrap',
         maxWidth: 'none',
-        lineHeight: 1.4,
-        border: '1px solid rgba(255,255,255,0.08)',
+        lineHeight: 1.5,
+        border: '1px solid rgba(255,255,255,0.1)',
+        textTransform: 'uppercase',
       }}>
         {lastName}
       </div>

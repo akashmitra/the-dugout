@@ -82,9 +82,6 @@ Create a JSON file following this schema:
 
 **Positions:** `GK`, `RB`, `CB`, `LB`, `CDM`, `CM`, `CAM`, `RM`, `LM`, `RW`, `LW`, `ST`, `CF`
 
-**`teamAssetCode`** is the FotMob team ID — used to display the team badge from:
-`https://images.fotmob.com/image_resources/logo/teamlogo/{teamAssetCode}.png`
-
 Then either:
 - Click **↑ JSON** in the app to upload it (saves to `src/data/` and opens the squad modal), or
 - Drop the file into `src/data/` and import it in `src/components/Controls/TeamSelector.tsx`

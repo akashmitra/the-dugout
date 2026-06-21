@@ -19,12 +19,13 @@ const BUILT_IN_TEAMS = [BRA, ARG, GER, ESP, ENG, NED, BEL, FRA, NOR, POR, CRO]
 const selectStyle: React.CSSProperties = {
   fontSize: 12,
   borderRadius: 6,
-  padding: '5px 8px',
-  background: 'rgba(255,255,255,0.05)',
-  color: '#e2e8f0',
+  padding: '5px 10px',
+  background: '#2c2c2c',
+  color: '#e8edf5',
   border: '1px solid rgba(255,255,255,0.1)',
   outline: 'none',
   cursor: 'pointer',
+  fontWeight: 500,
 }
 
 interface Props { slot: TeamSlot }
@@ -72,23 +73,26 @@ export function TeamSelector({ slot }: Props) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexDirection: isRight ? 'row-reverse' : 'row' }}>
       {/* Badge + label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexDirection: isRight ? 'row-reverse' : 'row' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexDirection: isRight ? 'row-reverse' : 'row' }}>
         {team?.teamAssetCode ? (
           <img
             src={`src/assets/teambadge//${team.teamAssetCode}.png`}
             alt={team.team}
-            width={22} height={22}
-            style={{ objectFit: 'contain', flexShrink: 0 }}
+            width={26} height={26}
+            style={{ objectFit: 'contain', flexShrink: 0, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}
           />
         ) : (
           <div style={{
-            width: 10, height: 10, borderRadius: '50%',
-            background: team?.primaryColor ?? 'rgba(255,255,255,0.2)',
-            border: '1.5px solid rgba(255,255,255,0.25)',
+            width: 26, height: 26, borderRadius: '50%',
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
-          }} />
+          }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.25)' }} />
+          </div>
         )}
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
           {slot === 'A' ? 'Team A' : 'Team B'}
         </span>
       </div>
