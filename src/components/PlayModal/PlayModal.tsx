@@ -141,7 +141,7 @@ export function PlayModal({ onClose }: Props) {
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 10 }}>
           {teamA?.teamAssetCode && (
             <img
-              src={`https://images.fotmob.com/image_resources/logo/teamlogo/${teamA.teamAssetCode}.png`}
+              src={`src/assets/teambadge/${teamA.teamAssetCode}.png`}
               width={32} height={32}
               style={{ objectFit: 'contain', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}
             />
@@ -193,7 +193,7 @@ export function PlayModal({ onClose }: Props) {
           </div>
           {teamB?.teamAssetCode && (
             <img
-              src={`https://images.fotmob.com/image_resources/logo/teamlogo/${teamB.teamAssetCode}.png`}
+              src={`src/assets/teambadge/${teamB.teamAssetCode}.png`}
               width={32} height={32}
               style={{ objectFit: 'contain', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}
             />
