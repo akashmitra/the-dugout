@@ -1,58 +1,138 @@
-# The Dugout
 
-A football tactics whiteboard for managers and analysts. Arrange two squads on a full-pitch canvas, build move sequences across slides, animate them in a full-screen presentation, and export as PNG, PDF, or a shareable gameplan file.
+# The Dugout: Tactical Whiteboard for Football
 
----
+## What Is It?
 
-## Features
+The Dugout is a browser-based football tactics whiteboard built for managers, coaches, and analysts who want to visualise and communicate game plans without the friction of traditional tools.
 
-### Pitch & Tokens
-- **16:9 horizontal pitch** — Team A on the left, Team B on the right, rendered as a clean SVG with grass stripes, penalty boxes, and centre circle
-- **Draggable player tokens** — circular tokens with player photo (or jersey-number fallback), name label, and team colour
-- **Draggable ball** — premium football SVG, snaps anywhere on the pitch
-- **Token style controls** — per-team floating accordion panel (accessed via the sliders icon next to each formation dropdown) lets you adjust **token size** (18–52px) and **opacity** (20–100%) independently for each team; changes reflect live in both the board and Play mode
+It gives you a full-pitch canvas, two real squads, and a slide-by-slide phase system — so you can build an entire tactical sequence and walk your team through it, move by move, with smooth animations.
+
+
+## The Problem It Solves
+
+Tactical communication in football is hard. Most tools fall into one of two camps:
+
+- **Too simple** — whiteboards and screenshot-based tools are static. You draw a position, take a screenshot, repeat. There's no sense of movement or timing.
+
+- **Too complex** — professional video analysis platforms (Wyscout, Hudl, Instat) are expensive, require training, and are overkill for a coach who just needs to show their midfielder where to press from.
+
+The Dugout sits in the middle: lightweight enough to run in any browser, powerful enough to show multi-phase tactical sequences with animated player movement — shareable as a PDF, PNG, or a gameplan file your assistant can reload.
+
+
+## Who Is It For?
+
+| Role | Use case |
+|---|---|
+| **Grassroots coach** | Show your players the shape for Saturday's match before training |
+| **Academy analyst** | Break down an opposition's build-up play phase by phase |
+| **Tactical content creator** | Produce clean, branded tactical breakdowns for social media or YouTube |
+| **Football teacher** | Illustrate formations, pressing triggers, and set-piece shapes in the classroom |
+| **Pro analyst (lightweight use)** | Quickly sketch a gameplan for a pre-match meeting without opening heavy software |
+
+
+## Core Features
 
 ### Squads & Formations
-- **11 built-in national squads** — Brazil, Argentina, Germany, Spain, England, Netherlands, Belgium, France, Norway, Portugal, Croatia; all sourced from FotMob with real jersey numbers and squad depth
-- **Squad selection modal** — pick your starting 11 from the full squad, grouped by position (GK / DEF / MID / FWD), with a player count badge and a confirm button
-- **6 formations** — 4-4-2, 4-3-3, 4-2-3-1, 3-5-2, 5-3-2, 4-1-4-1; tokens auto-place on selection
-- **Custom teams** — load any squad via **↑ JSON** upload; file is saved to `src/data/` automatically and the squad modal opens immediately
-- **Team badges** — FotMob CDN badges displayed next to each team name in the header
+
+- **11 built-in national squads** — Brazil, Argentina, Germany, Spain, England, Netherlands, Belgium, France, Norway, Portugal, Croatia — with real names, jersey numbers, and squad depth sourced from FotMob
+
+- **6 formations** — 4-4-2, 4-3-3, 4-2-3-1, 3-5-2, 5-3-2, 4-1-4-1— auto-placed on selection
+
+- **Squad selection modal** — choose your starting 11 from the full squad, filtered by position
+
+- **Custom team import** — load any team via a simple JSON file; add your own club, national team, or hypothetical XI
+
+
+### The Pitch
+
+- Full 16:9 horizontal pitch rendered as a clean SVG — boundary lines, penalty areas, centre circle, corner arcs, goal nets
+
+- Draggable player tokens with jersey number, name label, and team colour
+
+- Draggable ball with a premium SVG football
+
+
+### Token Style Controls
+
+- Per-team **size** slider (18–52px) — make one team larger to emphasise the focus of the analysis
+
+- Per-team **opacity** slider (20–100%) — fade out the opposition to draw attention to your team's movement
+
 
 ### Slide System
-- **Multi-slide canvas** — build up phases of play across as many slides as needed
-- **Duplicate** — copies the current slide (positions and ball) to carry play forward
-- **Delete** — removes a slide (disabled when only one slide remains)
-- **Slide panel** — thumbnail strip at the bottom with active-slide highlight and a quick-add button
-- **Gameplan export / import** — save the entire session (both teams, all slides, formations, token styles) to a `.json` file and reload it later
+
+- Build a multi-phase tactical sequence — each slide is a moment in the move
+
+- **Duplicate** any slide to carry positions forward, then adjust for the next phase
+
+- Slide panel at the bottom shows thumbnails of every phase
+
 
 ### Play Mode
-- **Play button** — opens a full-screen presentation modal starting from the current slide
-- **Animated transitions** — all player tokens and the ball glide smoothly to their new positions (700ms `cubic-bezier` easing) when advancing slides
-- **Manual navigation** — Prev / Next buttons; Next is locked during animation to prevent skipping
-- **Progress indicator** — compact pill-style dots show current phase and completion; active dot expands and turns green
-- **Team header** — both team badges, names, and coach names are visible at the top of the Play modal
-- **Done** — on the last slide, Next is replaced by a Done button that closes the modal
 
+- Full-screen presentation with a clean header showing both team badges and names
+
+- **Animated transitions** — every player token and the ball glides smoothly to its new position (700ms easing) when you advance to the next phase
+
+- **Manual navigation** — Prev / Next; Next locks during animation so you can't skip ahead
+
+- **Progress indicator** — compact pill-style dots showing which phase you're on
+
+- **Goal-mouth ball scaling** — the ball subtly shrinks as it crosses the goalline, giving a sense of depth
+
+- Done button on the last phase closes the presentation
+
+  
 ### Export
-- **PNG** — exports the current slide as a 16:9 image
-- **PDF** — exports all slides as a multi-page landscape PDF (one slide per page)
-- **Gameplan JSON** — full session export including token size/opacity, usable as a save file
 
----
+- **PNG** — current slide as a 16:9 image, ready for a presentation or social post
 
-## Tech Stack
+- **PDF** — all slides as a multi-page landscape PDF, one phase per page
 
-| Layer | Library |
+- **Gameplan JSON** — full session export including both squads, all slides, formations, and token styles — reload it anytime
+
+
+## A Typical Session
+
+```
+1. Select Germany (4-2-3-1) vs France (4-3-3)
+
+2. Pick your starting 11 for each side
+
+3. Drag players and ball into Phase 1 positions (e.g. France in possession, building from the back)
+
+4. Duplicate the slide → drag tokens into Phase 2 (Germany's press triggers)
+
+5. Duplicate again → Phase 3 (ball recovery, transition)
+
+6. Hit Play → walk through the sequence with smooth animations
+
+7. Export as PDF to share with the coaching staff
+```
+
+## Why It Works
+
+**Speed.** From opening the app to a fully animated 3-phase tactical sequence takes under 5 minutes. There's no account creation, no file system to navigate, no render queue.
+
+**Clarity.** The FotMob-inspired dark UI — black pitch surround, `#1a1a1a` headers, `#03b16b` green accents — keeps the focus on the pitch. Nothing competes with the tactical content.
+
+**Portability.** It runs entirely in the browser. The gameplan JSON export means you can work on a session at home, hand the file to your assistant, and they can pick it up exactly where you left off.
+
+**Extensibility.** Any team can be added in minutes with a JSON file. The format is simple enough that a club analyst could script the creation of every squad in their league.
+
+
+## Technical Foundation
+
+Built with React 18, TypeScript, Vite, and Zustand. No backend required — everything runs client-side. The dev server has a small plugin for saving custom team JSONs to disk, but the app itself has zero server dependencies.
+
+| Capability | Implementation |
 |---|---|
-| Framework | React 18 + TypeScript |
-| Build | Vite |
-| State | Zustand |
-| Styling | Tailwind CSS (via `@tailwindcss/vite`) + inline styles |
+| Drag and drop | Pointer Events API, constrained to pitch bounds |
+| Animation | CSS `transition` on `left`/`top`/`transform` |
 | PNG export | dom-to-image-more |
-| PDF export | jsPDF |
-
----
+| PDF export | jsPDF, iterates slides |
+| State | Zustand — slides, teams, formations, token styles |
+| Pitch | Pure SVG, `viewBox="0 0 160 90"`, `preserveAspectRatio="none"` |
 
 ## Setup
 
@@ -68,10 +148,9 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
----
+
 
 ## Player Images
-
 Player photos are resolved from `public/images/` using the naming convention:
 
 ```
@@ -82,48 +161,32 @@ Examples: `BRA_10.png`, `GER_7.png`, `ENG_9.png`
 
 If an image is missing, the token falls back to an SVG avatar showing the jersey number in the team's primary colour.
 
----
 
 ## Adding a Custom Team
-
 Create a JSON file following this schema:
 
 ```json
 {
-  "code": "ITA",
-  "team": "Italy",
-  "coach": "Luciano Spalletti",
-  "primaryColor": "#003DA5",
-  "secondaryColor": "#FFFFFF",
-  "teamAssetCode": "8254",
-  "players": [
-    { "id": 1, "name": "Gianluigi Donnarumma", "number": 1, "position": "GK", "image": "ITA_1.png" },
-    ...
-  ]
+	"code": "ITA",
+	"team": "Italy",
+	"coach": "Luciano Spalletti",
+	"primaryColor": "#003DA5",
+	"secondaryColor": "#FFFFFF",
+	"teamAssetCode": "8254",
+	"players": [
+	{ "id": 1, "name": "Gianluigi Donnarumma", "number": 1, "position": "GK", "image": "ITA_1.png" },
+	...
+	]
 }
 ```
 
-**`teamAssetCode`** is the FotMob team ID — the badge is loaded from  
-`https://images.fotmob.com/image_resources/logo/teamlogo/{teamAssetCode}.png`
+**`teamAssetCode`** is the team ID — the badge is loaded from `src/assets/teambadge`
 
 **Positions:** `GK`, `RB`, `CB`, `LB`, `CDM`, `CM`, `CAM`, `RM`, `LM`, `RW`, `LW`, `ST`, `CF`
 
 Then either:
 - Click **↑ JSON** in the app to upload it (saves to `src/data/` and opens the squad modal), or
 - Drop the file into `src/data/` and import it in `src/components/Controls/TeamSelector.tsx`
-
----
-
-## Typical Workflow
-
-1. Select a team and formation for each side — squad modal opens to confirm your starting 11
-2. Drag players and the ball into the starting positions for Phase 1
-3. Click **Duplicate** to copy the slide, then drag tokens into Phase 2 positions
-4. Repeat for as many phases as needed
-5. Click **Play** to run through the sequence with smooth animations in full-screen
-6. Export as **PDF** to share all phases, **PNG** for a single frame, or **Gameplan** to save and reload the session
-
----
 
 ## Project Structure
 
@@ -155,3 +218,17 @@ src/
 public/
   images/           # Player PNGs + ball.svg
 ```
+
+## What's Next
+The foundation is solid. Logical next features include:
+
+- **Arrow annotations** — draw movement vectors directly on the pitch (passing lanes, runs, press triggers)
+- **More formations** — 3-4-3, 4-4-1-1, 4-3-2-1 and others
+- **Club teams** — Premier League, La Liga, Bundesliga squads via JSON packs
+- **Set piece mode** — corner and free kick designer with arc/zone overlays
+- **Presenter mode** — auto-advance with configurable timing for team meeting playback
+- **Mobile support** — touch-optimised drag for pitch-side tablet use
+
+---
+
+*The Dugout is open and extensible by design. The JSON team format means anyone can build squad packs for their league, and the slide system is generic enough to support any tactical concept — not just 11v11.*
