@@ -4,8 +4,8 @@ import type { Player } from '../../types'
 
 const POSITION_GROUPS: Record<string, string[]> = {
   GK:  ['GK'],
-  DEF: ['RB', 'CB', 'LB', 'CDM'],
-  MID: ['CM', 'CAM', 'RM', 'LM'],
+  DEF: ['RB', 'CB', 'LB'],
+  MID: ['CM', 'CAM', 'RM', 'LM', 'CDM'],
   FWD: ['RW', 'LW', 'ST', 'CF'],
 }
 
