@@ -21,6 +21,10 @@ export interface Position {
   y: number
 }
 
+export interface FormationSlot extends Position {
+  pos: string
+}
+
 export interface Slide {
   id: string
   positionsA: Record<number, Position>

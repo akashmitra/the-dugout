@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { TeamData, Slide, TeamSlot, Position } from '../types'
-import { getFormationPositions } from '../utils/formations'
+import { getFormationSlots, matchPlayersToSlots } from '../utils/formations'
 import { exportGameplan, parseGameplan } from '../utils/gameplan'
 
 interface BoardStore {
@@ -51,11 +51,8 @@ function makeSlide(overrides?: Partial<Slide>): Slide {
 }
 
 function applyFormation(slide: Slide, slot: TeamSlot, team: TeamData, formation: string): Slide {
-  const positions = getFormationPositions(formation, slot)
-  const posMap: Record<number, Position> = {}
-  team.players.slice(0, 11).forEach((player, i) => {
-    posMap[player.id] = positions[i] ?? { x: 50, y: 50 }
-  })
+  const slots = getFormationSlots(formation, slot)
+  const posMap = matchPlayersToSlots(team.players.slice(0, 11), slots)
   return { ...slide, [slot === 'A' ? 'positionsA' : 'positionsB']: posMap }
 }
 
