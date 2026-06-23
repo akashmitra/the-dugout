@@ -63,15 +63,15 @@ export function getFormationPositions(formation: string, slot: 'A' | 'B'): Posit
 // Position-to-group lookup for fallback matching
 const POSITION_GROUP: Record<string, string> = {
   GK:  'GK',
-  RB: 'DEF', LB: 'DEF', CB: 'DEF', CDM: 'DEF',
-  RM: 'MID', LM: 'MID', CM: 'MID', CAM: 'MID', DM: 'MID',
+  RB: 'DEF', LB: 'DEF', CB: 'DEF',
+  RM: 'MID', LM: 'MID', CM: 'MID', CAM: 'MID', CDM: 'MID', DM: 'MID',
   RW: 'FWD', LW: 'FWD', ST: 'FWD', CF: 'FWD', SS: 'FWD',
 }
 
 const SLOT_GROUP: Record<string, string> = {
   GK:  'GK',
-  RB: 'DEF', LB: 'DEF', CB: 'DEF', CDM: 'DEF',
-  RM: 'MID', LM: 'MID', CM: 'MID', CAM: 'MID',
+  RB: 'DEF', LB: 'DEF', CB: 'DEF',
+  RM: 'MID', LM: 'MID', CM: 'MID', CAM: 'MID', CDM: 'MID',
   RW: 'FWD', LW: 'FWD', ST: 'FWD', CF: 'FWD',
 }
 
